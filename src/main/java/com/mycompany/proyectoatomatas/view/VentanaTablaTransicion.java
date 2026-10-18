@@ -28,6 +28,7 @@ public class VentanaTablaTransicion extends JFrame {
     private JTable tabla;
     private JLabel lblQ;
     private JLabel lblSigma;
+    private JLabel lblDelta;
     private JLabel lblInicial;
     private JLabel lblFinales;
 
@@ -146,17 +147,11 @@ public class VentanaTablaTransicion extends JFrame {
                 )
         );
 
-        lblQ =
-                new JLabel();
-
-        lblSigma =
-                new JLabel();
-
-        lblInicial =
-                new JLabel();
-
-        lblFinales =
-                new JLabel();
+        lblQ = new JLabel();
+        lblSigma = new JLabel();
+        lblDelta = new JLabel();
+        lblInicial = new JLabel();
+        lblFinales = new JLabel();
 
         Font fuenteDatos =
                 new Font(
@@ -165,37 +160,17 @@ public class VentanaTablaTransicion extends JFrame {
                         14
                 );
 
-        lblQ.setFont(
-                fuenteDatos
-        );
+        lblQ.setFont(fuenteDatos);
+        lblSigma.setFont(fuenteDatos);
+        lblDelta.setFont(fuenteDatos);
+        lblInicial.setFont(fuenteDatos);
+        lblFinales.setFont(fuenteDatos);
 
-        lblSigma.setFont(
-                fuenteDatos
-        );
-
-        lblInicial.setFont(
-                fuenteDatos
-        );
-
-        lblFinales.setFont(
-                fuenteDatos
-        );
-
-        panelDatos.add(
-                lblQ
-        );
-
-        panelDatos.add(
-                lblSigma
-        );
-
-        panelDatos.add(
-                lblInicial
-        );
-
-        panelDatos.add(
-                lblFinales
-        );
+        panelDatos.add(lblQ);
+        panelDatos.add(lblSigma);
+        panelDatos.add(lblDelta);
+        panelDatos.add(lblInicial);
+        panelDatos.add(lblFinales);
 
         // ------------------------------
         // TABLA
@@ -371,7 +346,34 @@ public class VentanaTablaTransicion extends JFrame {
         lblSigma.setText(
                 textoSigma.toString()
         );
+        
+        // =================================================
+        // MOSTRAR FUNCIÓN DE TRANSICIÓN
+        // =================================================
 
+        StringBuilder textoDelta =
+                new StringBuilder("δ = {");
+
+        for (int i = 0; i < transiciones.size(); i++) {
+
+            Transicion transicion = transiciones.get(i);
+
+            textoDelta.append("(")
+                    .append(transicion.getOrigen().getNombre())
+                    .append(", ")
+                    .append(transicion.getSimbolo())
+                    .append(") → ")
+                    .append(transicion.getDestino().getNombre());
+
+            if (i < transiciones.size() - 1) {
+                textoDelta.append("; ");
+            }
+        }
+
+        textoDelta.append("}");
+
+        lblDelta.setText(textoDelta.toString());
+        
         // =================================================
         // ESTADO INICIAL
         // =================================================

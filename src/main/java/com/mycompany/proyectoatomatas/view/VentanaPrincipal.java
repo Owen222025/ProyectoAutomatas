@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -28,6 +29,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
@@ -229,7 +231,7 @@ public class VentanaPrincipal extends JFrame {
                 "Tabla de transición"
         );
        
-
+        
         // =================================================
         // COLORES DE LOS BOTONES
         // =================================================
@@ -311,13 +313,6 @@ public class VentanaPrincipal extends JFrame {
                 )
         );
 
-        panelLateral.setPreferredSize(
-                new Dimension(
-                        225,
-                        0
-                )
-        );
-
         panelLateral.setBackground(
                 COLOR_LATERAL
         );
@@ -365,7 +360,6 @@ public class VentanaPrincipal extends JFrame {
                         20
                 )
         );
-
         // =================================================
         // CUADRO 1 - EDICIÓN
         // =================================================
@@ -440,7 +434,7 @@ public class VentanaPrincipal extends JFrame {
         panelEdicion.add(
                 btnReset
         );
-
+        
         // =================================================
         // CUADRO 2 - AUTÓMATA
         // =================================================
@@ -515,7 +509,8 @@ public class VentanaPrincipal extends JFrame {
         );
         panelHerramientasAutomata.add(
         btnTablaTransicion
-        );
+        );       
+        
         
         // =================================================
 // CUADRO 3 - ARCHIVO
@@ -584,7 +579,7 @@ panelArchivo.add(
 panelArchivo.setAlignmentX(
         CENTER_ALIGNMENT
 );
-
+   
         // =================================================
         // AGREGAR LOS DOS CUADROS
         // =================================================
@@ -624,11 +619,21 @@ panelArchivo.setAlignmentX(
         panelLateral.add(
                 Box.createVerticalGlue()
         );
+        
+        JScrollPane scrollHerramientas = new JScrollPane(panelLateral);
 
-        add(
-                panelLateral,
+            scrollHerramientas.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+            );
+
+            scrollHerramientas.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+            );
+
+            add(
+                scrollHerramientas,
                 BorderLayout.WEST
-        );
+            );
 
         // =================================================
         // LIENZO CENTRAL
@@ -643,6 +648,7 @@ panelArchivo.setAlignmentX(
                 panelAutomata,
                 BorderLayout.CENTER
         );
+        
 
         // =================================================
         // PANEL INFERIOR
@@ -1252,9 +1258,6 @@ btnImportar.addActionListener(
         }
 );
 
-
-
-
         // =================================================
         // BOTÓN SIMULAR
         // =================================================
@@ -1378,20 +1381,20 @@ btnImportar.addActionListener(
 
                                 if (aceptada) {
 
-                                    lblResultado.setText(
-                                            "Resultado: ACEPTADA"
-                                    );
+                                lblResultado.setText(
+                                        "Resultado: ACEPTADA"
+                                );
 
-                                    lblResultado.setForeground(
-                                            COLOR_VERDE
-                                    );
+                                lblResultado.setForeground(
+                                        new Color(0, 128, 0)
+                                );
 
-                                    JOptionPane.showMessageDialog(
-                                            this,
-                                            "La cadena fue ACEPTADA.",
-                                            "Resultado",
-                                            JOptionPane.INFORMATION_MESSAGE
-                                    );
+                                JOptionPane.showMessageDialog(
+                                        this,
+                                        "La cadena fue ACEPTADA.",
+                                        "Resultado",
+                                        JOptionPane.INFORMATION_MESSAGE
+                                );                            
 
                                 } else {
 
@@ -1500,5 +1503,6 @@ btnImportar.addActionListener(
                 JOptionPane.WARNING_MESSAGE
         );
     }
+    
     
 }
